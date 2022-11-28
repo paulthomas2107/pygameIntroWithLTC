@@ -12,10 +12,10 @@ display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 pygame.display.set_caption("Hello Paul !")
 
 # Images
-arrow_left = pygame.image.load("previous.png")
+arrow_left = pygame.image.load("graphics/previous.png")
 arrow_left_rect = arrow_left.get_rect()
 arrow_left_rect.topleft = (0, 0)
-arrow_right = pygame.image.load("next.png")
+arrow_right = pygame.image.load("fonts/next.png")
 arrow_right_rect = arrow_left.get_rect()
 arrow_right_rect.topright = (WINDOW_WIDTH, 0)
 
@@ -29,6 +29,9 @@ YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
 DARK_GREEN = (10, 50, 10)
+
+# Game vars
+VELOCITY = 10
 
 # BG Display
 display_surface.fill(BLACK)
@@ -51,6 +54,12 @@ def blittingImages():
     pygame.draw.line(display_surface, WHITE, (0, 75), (WINDOW_WIDTH, 75), 4)
 
 
+def moreImages():
+    arrow_right_rect.centerx = WINDOW_WIDTH // 2
+    arrow_right_rect.bottom = WINDOW_HEIGHT
+    display_surface.blit(arrow_right, arrow_right_rect)
+
+
 def showFonts():
     # Text
     fonts = pygame.font.get_fonts()
@@ -61,7 +70,7 @@ def showFonts():
 def useCustomFont():
     # Set Fonts
     system_font = pygame.font.SysFont('calibri', 64)
-    custom_font = pygame.font.Font('AttackGraffiti.ttf', 32)
+    custom_font = pygame.font.Font('./fonts/AttackGraffiti.ttf', 32)
     system_text = system_font.render("Dragons Rule !", True, GREEN, DARK_GREEN)
     system_text_rect = system_text.get_rect()
     system_text_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
@@ -74,8 +83,8 @@ def useCustomFont():
 
 
 def useSounds():
-    sound_1 = pygame.mixer.Sound('zap.wav')
-    sound_2 = pygame.mixer.Sound('explosion.wav')
+    sound_1 = pygame.mixer.Sound('sounds/zap.wav')
+    sound_2 = pygame.mixer.Sound('sounds/explosion.wav')
 
     sound_1.play(loops=1)
     pygame.time.delay(1000)
@@ -87,11 +96,12 @@ def useSounds():
     pygame.time.delay(1000)
 
     # Background music
-    pygame.mixer.music.load("theme.wav")
+    pygame.mixer.music.load("sounds/theme.wav")
     pygame.mixer.music.play(1, 0.0)
+    pygame.mixer.stop()
 
 
-useSounds()
+# useSounds()
 
 # Main Game Loop
 running = True
@@ -105,6 +115,7 @@ while running:
     # drawBasicShapes()
     blittingImages()
     useCustomFont()
+    moreImages()
 
     # Update display
     pygame.display.update()

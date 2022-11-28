@@ -16,17 +16,15 @@ arrow_left = pygame.image.load("graphics/previous.png")
 arrow_left_rect = arrow_left.get_rect()
 arrow_left_rect.topleft = (0, 0)
 
-arrow_right = pygame.image.load("fonts/next.png")
+arrow_right = pygame.image.load("graphics/next.png")
 arrow_right_rect = arrow_right.get_rect()
 arrow_right_rect.topright = (WINDOW_WIDTH, 0)
 
-arrow_right_2 = pygame.image.load("fonts/next.png")
+arrow_right_2 = pygame.image.load("graphics/next.png")
 arrow_right_rect_2 = arrow_right_2.get_rect()
 arrow_right_rect_2.topright = (WINDOW_WIDTH, 0)
 arrow_right_rect_2.centerx = WINDOW_WIDTH // 2
 arrow_right_rect_2.bottom = WINDOW_HEIGHT
-
-
 
 
 # RGB Colors

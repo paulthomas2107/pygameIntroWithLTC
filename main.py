@@ -28,6 +28,7 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 CYAN = (0, 255, 255)
 MAGENTA = (255, 0, 255)
+DARK_GREEN = (10, 50, 10)
 
 # BG Display
 display_surface.fill(BLACK)
@@ -44,9 +45,32 @@ def drawBasicShapes():
 
 
 def blittingImages():
+    # Image
     display_surface.blit(arrow_left, arrow_left_rect)
     display_surface.blit(arrow_right, arrow_right_rect)
     pygame.draw.line(display_surface, WHITE, (0, 75), (WINDOW_WIDTH, 75), 4)
+
+
+def showFonts():
+    # Text
+    fonts = pygame.font.get_fonts()
+    for _ in fonts:
+        print(_)
+
+
+def useCustomFont():
+    # Set Fonts
+    system_font = pygame.font.SysFont('calibri', 64)
+    custom_font = pygame.font.Font('AttackGraffiti.ttf', 32)
+    system_text = system_font.render("Dragons Rule !", True, GREEN, DARK_GREEN)
+    system_text_rect = system_text.get_rect()
+    system_text_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+    custom_text = custom_font.render("Move The Dragon Soon...", True, GREEN)
+    custom_text_rect = custom_text.get_rect()
+    custom_text_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 100)
+    # Blit to screen
+    display_surface.blit(system_text, system_text_rect)
+    display_surface.blit(custom_text, custom_text_rect)
 
 
 # Main Game Loop
@@ -60,6 +84,7 @@ while running:
     # Do stuff
     # drawBasicShapes()
     blittingImages()
+    useCustomFont()
 
     # Update display
     pygame.display.update()

@@ -73,6 +73,26 @@ def useCustomFont():
     display_surface.blit(custom_text, custom_text_rect)
 
 
+def useSounds():
+    sound_1 = pygame.mixer.Sound('zap.wav')
+    sound_2 = pygame.mixer.Sound('explosion.wav')
+
+    sound_1.play(loops=1)
+    pygame.time.delay(1000)
+    sound_2.play(loops=1)
+    pygame.time.delay(1000)
+
+    sound_2.set_volume(.1)
+    sound_2.play(loops=1)
+    pygame.time.delay(1000)
+
+    # Background music
+    pygame.mixer.music.load("theme.wav")
+    pygame.mixer.music.play(1, 0.0)
+
+
+useSounds()
+
 # Main Game Loop
 running = True
 while running:

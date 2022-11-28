@@ -15,9 +15,19 @@ pygame.display.set_caption("Hello Paul !")
 arrow_left = pygame.image.load("graphics/previous.png")
 arrow_left_rect = arrow_left.get_rect()
 arrow_left_rect.topleft = (0, 0)
+
 arrow_right = pygame.image.load("fonts/next.png")
-arrow_right_rect = arrow_left.get_rect()
+arrow_right_rect = arrow_right.get_rect()
 arrow_right_rect.topright = (WINDOW_WIDTH, 0)
+
+arrow_right_2 = pygame.image.load("fonts/next.png")
+arrow_right_rect_2 = arrow_right_2.get_rect()
+arrow_right_rect_2.topright = (WINDOW_WIDTH, 0)
+arrow_right_rect_2.centerx = WINDOW_WIDTH // 2
+arrow_right_rect_2.bottom = WINDOW_HEIGHT
+
+
+
 
 # RGB Colors
 BLACK = (0, 0, 0)
@@ -55,9 +65,8 @@ def blittingImages():
 
 
 def moreImages():
-    arrow_right_rect.centerx = WINDOW_WIDTH // 2
-    arrow_right_rect.bottom = WINDOW_HEIGHT
-    display_surface.blit(arrow_right, arrow_right_rect)
+
+    display_surface.blit(arrow_right_2, arrow_right_rect_2)
 
 
 def showFonts():
@@ -110,6 +119,19 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                arrow_right_2 = pygame.image.load("graphics/next.png")
+                arrow_right_rect_2.x += VELOCITY
+            if event.key == pygame.K_LEFT:
+                arrow_right_2 = pygame.image.load("graphics/previous.png")
+                arrow_right_rect_2.x -= VELOCITY
+            if event.key == pygame.K_UP:
+                arrow_right_rect_2.y -= VELOCITY
+            if event.key == pygame.K_DOWN:
+                arrow_right_rect_2.y += VELOCITY
+
+    display_surface.fill(BLACK)
 
     # Do stuff
     # drawBasicShapes()

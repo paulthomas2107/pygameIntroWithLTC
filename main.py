@@ -129,10 +129,9 @@ while running:
             if event.key == pygame.K_DOWN:
                 arrow_right_rect_2.y += VELOCITY
 
-    display_surface.fill(BLACK)
-
     # Do stuff
     # drawBasicShapes()
+    display_surface.fill(BLACK)
     blittingImages()
     useCustomFont()
     moreImages()
